@@ -1,0 +1,47 @@
+body{
+    margin: auto
+}
+.contain{
+    position:absolute;
+    top: 20%;
+    left: 10%;
+    width:60%;
+
+}
+.row{
+    display: flex;
+}
+.block{
+    border: 1px solid black;
+    width:10%;
+    height: 40px;
+}
+
+.menu{
+    position:absolute;
+    top: 20%;
+    left: 80%;
+    width: 10%;
+}
+.block-menu{
+    border: 1px solid black;
+    width:49%;
+    height: 40px;
+
+}
+h1{
+    margin-left:10%;
+}
+.block-menu{
+    object-fit: cover
+}
+
+.sky{
+    background-image: url("../images/image\ \(3\).jpg");
+}
+.tGrs{
+    background-image: url("../images/image.jpg");
+}
+.earth{
+    background-image: url("../images/image\ \(1\).jpg");
+}
