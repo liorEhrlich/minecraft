@@ -25,8 +25,8 @@ body{
 }
 .block-menu{
     border: 1px solid black;
-    width:49%;
-    height: 40px;
+    width:34%;
+    height: 50px;
 
 }
 h1{
@@ -44,4 +44,16 @@ h1{
 }
 .earth{
     background-image: url("../images/image\ \(1\).jpg");
+}
+#shovelid{
+    background-image: url("../images/shovel.png");
+    background-size: contain;
+}
+#pickaxeid{
+    background-image: url("../images/pickaxe.png");
+    background-size: contain;
+}
+#axeid{
+    background-image: url("../images/axe.png");
+    background-size: contain;
 }
