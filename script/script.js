@@ -1,5 +1,5 @@
 var mainGame = {
-    selectedBlock: `url("./images/image (9).jpg")`,
+    selectedTool: "axeid",
     matrix: [
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
@@ -39,17 +39,29 @@ var setImagesToMenu = function () {
     $("#row-menuid4 #block-menuid2").css('background-image', `url("./images/image (9).jpg")`);
 }
 
-var selectBlock = function (event) {
-    mainGame.selectedBlock = $(event.target).css("background-image")
-    console.log(mainGame.selectedBlock);
+var selectTool = function (event) {
+    mainGame.selectedTool = event.target.id
+    console.log(mainGame.selectedTool);
 }
 
 var changeBlockImage = function (event) {
-    //var clickedBlock = event.target.id;
-    $(event.target).css('background-image', mainGame.selectedBlock)
+    var selectedBlockType = event.target.className;
+    console.log(selectedBlockType)
+    // if(mainGame.selectedTool === "axeid"){
+
+    // }
+    // else if(mainGame.selectedTool === "pickaxeid"){
+
+    // }
+    // else if(mainGame.selectedTool === "shovelid"){
+
+    // }
+    // else{
+    //     console.log("Error!!Run for your lives!!")
+    // }
 }
 
-$(".menu").on("click", selectBlock);
+$(".menu").on("click", selectTool);
 
 $(".contain").on("click", changeBlockImage);
 
