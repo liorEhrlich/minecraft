@@ -1,11 +1,10 @@
-body{
-    margin: auto
-}
+
 .contain{
-    position:absolute;
+    position:fixed;
     top: 20%;
     left: 10%;
     width:60%;
+    height:100%;
 
 }
 .row{
@@ -14,19 +13,18 @@ body{
 .block{
     border: 1px solid grey;
     width:10%;
-    height: 40px;
+    height: 5vh;
 }
 
 .menu{
-    position:absolute;
+    position:fixed;
     top: 20%;
     left: 80%;
-    width: 10%;
 }
 .block-menu{
     border: 1px solid black;
-    width:34%;
-    height: 50px;
+    width:8vh;
+    height: 8vh;
 
 }
 h1{

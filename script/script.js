@@ -1,6 +1,6 @@
 var mainGame = {
     selectedTool: "axeid",
-    lastBlock: null,
+    selectedBlockToPlaceBack: null,
     matrix: [
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
@@ -29,42 +29,74 @@ var setImagesToBegining = function () {
     }
 }
 
-var updateBlockInventory = function(blockType){
-    if(blockType === "tGrs"){
+var updateBlockInventory = function (blockType) {
+    if (blockType === "tGrs") {
         var tGrsInInventory = $("#tGrsinventoryid").html();
-        if(tGrsInInventory<6){
+        if (tGrsInInventory < 6) {
             $("#tGrsinventoryid").html(parseInt($("#tGrsinventoryid").html()) + 1);
         }
     }
-    else if(blockType === "earth"){
+    else if (blockType === "earth") {
         var tGrsInInventory = $("#earthinventoryid").html();
-        if(tGrsInInventory<6){
+        if (tGrsInInventory < 6) {
             $("#earthinventoryid").html(parseInt($("#earthinventoryid").html()) + 1);
         }
     }
-    else if(blockType === "wood"){
+    else if (blockType === "wood") {
         var tGrsInInventory = $("#woodinventoryid").html();
-        if(tGrsInInventory<6){
+        if (tGrsInInventory < 6) {
             $("#woodinventoryid").html(parseInt($("#woodinventoryid").html()) + 1);
         }
     }
-    else if(blockType === "leaves"){
+    else if (blockType === "leaves") {
         var tGrsInInventory = $("#leavesinventoryid").html();
-        if(tGrsInInventory<6){
+        if (tGrsInInventory < 6) {
             $("#leavesinventoryid").html(parseInt($("#leavesinventoryid").html()) + 1);
         }
     }
-    else if(blockType === "stone"){
+    else if (blockType === "stone") {
         var tGrsInInventory = $("#stoneinventoryid").html();
-        if(tGrsInInventory<3){
+        if (tGrsInInventory < 3) {
             $("#stoneinventoryid").html(parseInt($("#stoneinventoryid").html()) + 1);
         }
     }
 }
 
 var selectTool = function (event) {
-    mainGame.selectedTool = event.target.id
-    console.log(mainGame.selectedTool);
+    $(`#${mainGame.selectedTool}`).attr("style","")
+    mainGame.selectedTool = event.target.id;
+    $(event.target).css("border","1px dashed yellow");
+}
+
+var selectBlockToPlaceBack = function (event) {
+    mainGame.selectedBlockToPlaceBack = event.target.id;
+    $(`#${event.target.id}`).css("border","1px dashed yellow");
+    $(".contain").off("click");
+    $(".contain").on("click", placeSelectedBlockOnBoard);
+}
+
+var placeSelectedBlockOnBoard = function () {
+    $(`#${mainGame.selectedBlockToPlaceBack}`).attr("style","");
+    var blockType = mainGame.selectedBlockToPlaceBack
+    blockType = blockType.substring(0, blockType.indexOf("-menuid"));
+    var blockClassToRemove = $(event.target).attr('class');
+    blockClassToRemove = blockClassToRemove.substring(6, blockClassToRemove.length);
+    var inInventory = parseInt($(`#${blockType}inventoryid`).html());
+    if (inInventory > 0) {
+        $(event.target).removeClass(blockClassToRemove);
+        $(event.target).addClass(blockType);
+        $(`#${blockType}inventoryid`).html(parseInt($(`#${blockType}inventoryid`).html()) - 1);
+    }
+    else if(inInventory === 0){
+        $(`#${blockType}inventoryid`).css("color","red");
+        $(`#${blockType}inventoryid`).css("font-weight","bold");
+        setTimeout(function(){
+            $(`#${blockType}inventoryid`).css("color","black");
+        $(`#${blockType}inventoryid`).css("font-weight","normal");
+        },1000);
+    }
+    $(".contain").off("click");
+    $(".contain").on("click", changeBlockImage);
 }
 
 var changeBlockImage = function (event) {
@@ -79,12 +111,24 @@ var changeBlockImage = function (event) {
             $(event.target).removeClass("earth");
             $(event.target).addClass("sky");
         }
+        else{
+            $(`#${mainGame.selectedTool}`).css("border","1px solid red");
+            setTimeout(function(){
+                $(`#${mainGame.selectedTool}`).css("border","1px dashed yellow");
+            },500);   
+        }
     }
     else if (mainGame.selectedTool === "pickaxeid") {
         if ($(event.target).attr('class') === "block stone") {
             updateBlockInventory("stone");
             $(event.target).removeClass("stone");
             $(event.target).addClass("sky");
+        }
+        else{
+            $(`#${mainGame.selectedTool}`).css("border","1px solid red");
+            setTimeout(function(){
+                $(`#${mainGame.selectedTool}`).css("border","1px dashed yellow");
+            },500);   
         }
     }
     else if (mainGame.selectedTool === "axeid") {
@@ -98,10 +142,18 @@ var changeBlockImage = function (event) {
             $(event.target).removeClass("wood");
             $(event.target).addClass("sky");
         }
+        else{
+            $(`#${mainGame.selectedTool}`).css("border","1px solid red");
+            setTimeout(function(){
+                $(`#${mainGame.selectedTool}`).css("border","1px dashed yellow");
+            },500);   
+        }
     }
 }
 
-$(".menu").on("click", selectTool);
+$(".tool-item").on("click", selectTool);
+
+$(".block-item").on("click", selectBlockToPlaceBack);
 
 $(".contain").on("click", changeBlockImage);
 
