@@ -12,7 +12,7 @@ body{
     display: flex;
 }
 .block{
-    border: 1px solid black;
+    border: 1px solid grey;
     width:10%;
     height: 40px;
 }
@@ -45,15 +45,25 @@ h1{
 .earth{
     background-image: url("../images/image\ \(1\).jpg");
 }
+.stone{
+    background-image: url("../images/image\ \(2\).jpg");
+}
+.wood{
+    background-image: url("../images/image\ \(9\).jpg");    
+}
+.leaves{
+    background-image: url("../images/image\ \(6\).jpg");
+}
 #shovelid{
     background-image: url("../images/shovel.png");
-    background-size: contain;
+    background-size: cover;
 }
 #pickaxeid{
     background-image: url("../images/pickaxe.png");
-    background-size: contain;
+    background-size: cover;
+
 }
 #axeid{
     background-image: url("../images/axe.png");
-    background-size: contain;
+    background-size: cover;
 }

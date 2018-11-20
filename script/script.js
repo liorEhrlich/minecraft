@@ -1,16 +1,17 @@
 var mainGame = {
     selectedTool: "axeid",
+    lastBlock: null,
     matrix: [
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
+        ["sky", "sky", "leaves", "leaves", "leaves", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
+        ["sky", "sky", "leaves", "wood", "leaves", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
+        ["sky", "sky", "sky", "wood", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
+        ["sky", "sky", "sky", "wood", "sky", "sky", "sky", "sky", "sky", "sky", "stone", "sky", "sky", "sky",],
+        ["sky", "sky", "sky", "wood", "sky", "sky", "sky", "sky", "sky", "sky", "stone", "stone", "sky", "sky",],
         ["tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs", "tGrs"],
         ["earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth"],
         ["earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth", "earth"]
@@ -28,15 +29,37 @@ var setImagesToBegining = function () {
     }
 }
 
-var setImagesToMenu = function () {
-    $("#row-menuid1 #block-menuid1").css('background-image', `url("./images/shovel.png")`);
-    $("#row-menuid1 #block-menuid2").css('background-image', `url("./images/pickaxe.png")`);
-    $("#row-menuid2 #block-menuid1").css('background-image', `url("./images/image (4).jpg")`);
-    $("#row-menuid2 #block-menuid2").css('background-image', `url("./images/image (5).jpg")`);
-    $("#row-menuid3 #block-menuid1").css('background-image', `url("./images/image (6).jpg")`);
-    $("#row-menuid3 #block-menuid2").css('background-image', `url("./images/image (7).jpg")`);
-    $("#row-menuid4 #block-menuid1").css('background-image', `url("./images/image (8).jpg")`);
-    $("#row-menuid4 #block-menuid2").css('background-image', `url("./images/image (9).jpg")`);
+var updateBlockInventory = function(blockType){
+    if(blockType === "tGrs"){
+        var tGrsInInventory = $("#tGrsinventoryid").html();
+        if(tGrsInInventory<6){
+            $("#tGrsinventoryid").html(parseInt($("#tGrsinventoryid").html()) + 1);
+        }
+    }
+    else if(blockType === "earth"){
+        var tGrsInInventory = $("#earthinventoryid").html();
+        if(tGrsInInventory<6){
+            $("#earthinventoryid").html(parseInt($("#earthinventoryid").html()) + 1);
+        }
+    }
+    else if(blockType === "wood"){
+        var tGrsInInventory = $("#woodinventoryid").html();
+        if(tGrsInInventory<6){
+            $("#woodinventoryid").html(parseInt($("#woodinventoryid").html()) + 1);
+        }
+    }
+    else if(blockType === "leaves"){
+        var tGrsInInventory = $("#leavesinventoryid").html();
+        if(tGrsInInventory<6){
+            $("#leavesinventoryid").html(parseInt($("#leavesinventoryid").html()) + 1);
+        }
+    }
+    else if(blockType === "stone"){
+        var tGrsInInventory = $("#stoneinventoryid").html();
+        if(tGrsInInventory<3){
+            $("#stoneinventoryid").html(parseInt($("#stoneinventoryid").html()) + 1);
+        }
+    }
 }
 
 var selectTool = function (event) {
@@ -45,20 +68,37 @@ var selectTool = function (event) {
 }
 
 var changeBlockImage = function (event) {
-    var selectedBlockType = event.target.className;
-    console.log(selectedBlockType)
-    // if(mainGame.selectedTool === "axeid"){
-
-    // }
-    // else if(mainGame.selectedTool === "pickaxeid"){
-
-    // }
-    // else if(mainGame.selectedTool === "shovelid"){
-
-    // }
-    // else{
-    //     console.log("Error!!Run for your lives!!")
-    // }
+    if (mainGame.selectedTool === "shovelid") {
+        if ($(event.target).attr('class') === "block tGrs") {
+            updateBlockInventory("tGrs");
+            $(event.target).removeClass("tGrs");
+            $(event.target).addClass("sky");
+        }
+        else if ($(event.target).attr('class') === "block earth") {
+            updateBlockInventory("earth");
+            $(event.target).removeClass("earth");
+            $(event.target).addClass("sky");
+        }
+    }
+    else if (mainGame.selectedTool === "pickaxeid") {
+        if ($(event.target).attr('class') === "block stone") {
+            updateBlockInventory("stone");
+            $(event.target).removeClass("stone");
+            $(event.target).addClass("sky");
+        }
+    }
+    else if (mainGame.selectedTool === "axeid") {
+        if ($(event.target).attr('class') === "block leaves") {
+            updateBlockInventory("leaves");
+            $(event.target).removeClass("leaves");
+            $(event.target).addClass("sky");
+        }
+        else if ($(event.target).attr('class') === "block wood") {
+            updateBlockInventory("wood");
+            $(event.target).removeClass("wood");
+            $(event.target).addClass("sky");
+        }
+    }
 }
 
 $(".menu").on("click", selectTool);
@@ -67,4 +107,3 @@ $(".contain").on("click", changeBlockImage);
 
 setImagesToBegining();
 
-//setImagesToMenu();
