@@ -6,7 +6,7 @@ var mainGame = {
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
-        ["sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
+        ["sky", "sky", "leaves", "leaves", "leaves", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "leaves", "leaves", "leaves", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "leaves", "wood", "leaves", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
         ["sky", "sky", "sky", "wood", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky", "sky",],
