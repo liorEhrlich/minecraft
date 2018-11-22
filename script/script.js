@@ -101,7 +101,7 @@ var selectBlockToPlaceBack = function (event) {
     }
 }
 
-var denyToolInStyle = function(selectedTool){
+var denyToolInStyle = function (selectedTool) {
     $(`#${selectedTool}`).css("opacity", "0.3");
     $(`#${selectedTool}`).css("border", "1px solid red");
     setTimeout(function () {
@@ -172,7 +172,12 @@ var startGame = function () {
     $(".contain").on("click", changeBlockImage);
 }
 
+
 var showTutorial = function () {
+    if (!$("#supportPageId").hasClass("doNotDisplay")) {
+        $("#supportPageId").fadeOut();
+        $('#supportPageId').toggleClass("doNotDisplay")
+    }
     if ($("#tutorialPageId").hasClass("doNotDisplay")) {
         $('#tutorialPageId').fadeIn('medium');
     }
@@ -184,6 +189,10 @@ var showTutorial = function () {
 }
 
 var showSupport = function () {
+    if (!$("#tutorialPageId").hasClass("doNotDisplay")) {
+        $("#tutorialPageId").fadeOut();
+        $('#tutorialPageId').toggleClass("doNotDisplay")
+    }
     if ($("#supportPageId").hasClass("doNotDisplay")) {
         $('#supportPageId').fadeIn('medium');
     }
