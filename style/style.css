@@ -1,8 +1,6 @@
 body{
     background-image: url("../images/background.jpg");
     background-size:     cover;                     
-    /* background-repeat:   no-repeat;
-    background-position: center center;   */
 }
 .contain{
     position:fixed;
@@ -10,33 +8,41 @@ body{
     left: 10%;
     width:60%;
     height:100%;
-
+    
 }
 .row{
     display: flex;
 }
 .block{
+    position: relative;
     border: 1px solid grey;
     width:10%;
     height: 5vh;
+    background-color: white;
+}
+
+.block:hover{
+    opacity: .8;
 }
 
 .menu{
-    position:fixed;
-    top: 20%;
-    left: 80%;
+       top: 20%;
+       float: right;
+       margin-right: 20px;
+       margin-top: 30vh;
+
 }
 .block-menu{
     border: 1px solid black;
-    width:8vh;
-    height: 8vh;
+    width:6vh;
+    height: 6vh;
 
 }
 #logoImg{
     position: fixed;
     left: 10%;
     top:5%;
-    width:20%; /* you can use % */
+    width:20%;
     height: auto;
 }
 .block-menu{
@@ -73,4 +79,80 @@ body{
 #axeid{
     background-image: url("../images/axe.png");
     background-size: cover;
+}
+
+#landingPageId{
+    position: relative;
+    height:100vh;
+    width:80vw;
+    margin: 8vh auto;
+    text-align: center;
+}
+#landingBGId{
+    height: 80vh;
+    display:block;
+    margin:auto;
+    background-image: url("../images/background.jpg");
+    background-size:cover; 
+    filter: blur(8px);
+}
+.doNotDisplay{
+    display: none;
+}
+
+#landingLogoId{
+    position: fixed;
+    top: 10vh;
+    margin: 10px auto;
+    left: 35%;
+    width: 30%;
+}
+.buttonContainer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 70vh;
+}
+.buttonContainer button{
+    margin: 10px;
+    border: 1px solid rgba(0,0,0,0.21);
+    border-bottom: 4px solid rgba(0,0,0,0.21);
+    border-radius: 4px;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+.buttonContainer button:hover{
+    box-shadow: 0 0 #93b07d; background-color: #87a86f;
+}
+.buttonContainer button:active{
+    box-shadow: 0 0 #87a86f; background-color: #87a86f;
+}
+#tutorialPageId{
+    border: 1px solid black;
+    border-radius: 4px;
+    position: fixed;
+    width: 30vw;
+    height: auto;
+    top: 30vh;
+    left: 34vw;
+    background-color: #93b07d;
+    padding: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#supportPageId{
+    position: fixed;
+    width: 30vw;
+    height: 30vh;
+    top: 30vh;
+    left: 34vw;
+    background-image: url("../images/bank.png");
+    background-size: contain;
+    background-repeat:   no-repeat;
+    background-position: center center;
+
+}
+
+.blur{
+    filter: blur(8px);
 }

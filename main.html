@@ -10,40 +10,60 @@
 </head>
 
 <body>
-    <img id="logoImg" src="images/minecraft_logo.png">
-    <div class="contain">
+    <div id="gameContainer">
+        <img id="logoImg" src="images/minecraft_logo.png">
+        <div class="contain">
 
+        </div>
+        <div class="menu">
+            <div class="row" id="row-menuid1">
+                <div class="block-menu tool-item" id="shovelid">
+                </div>
+                <div class="block-menu tool-item" id="axeid" style="border: 1px dashed yellow;">
+                </div>
+            </div>
+            <div class="row" id="row-menuid2">
+                <div class="block-menu tool-item" id="pickaxeid">
+                </div>
+                <div class="block-menu block-item tGrs" id="tGrs-menuid">
+                    <div id="tGrsinventoryid">0</div>
+                </div>
+            </div>
+            <div class="row" id="row-menuid3">
+                <div class="block-menu block-item stone" id="stone-menuid">
+                    <div id="stoneinventoryid">0</div>
+                </div>
+                <div class="block-menu block-item leaves" id="leaves-menuid">
+                    <div id="leavesinventoryid">0</div>
+                </div>
+            </div>
+            <div class="row" id="row-menuid4">
+                <div class="block-menu block-item wood" id="wood-menuid">
+                    <div id="woodinventoryid">0</div>
+                </div>
+                <div class="block-menu block-item earth" id="earth-menuid">
+                    <div id="earthinventoryid">0</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="menu">
-        <div class="row" id="row-menuid1">
-            <div class="block-menu tool-item" id="shovelid">
-            </div>
-            <div class="block-menu tool-item" id="axeid" style="border: 1px dashed yellow;">
-            </div>
+
+    <div id="landingPageId" class="doNotDisplay">
+        <div id="landingBGId"></div>
+        <img id="landingLogoId" src="images/minecraft_logo.png" />
+        <div class="buttonContainer">
+            <button id="startGameId">Start Game</button>
+            <button id="tutorialId">Tutorial</button>
+            <button id="supportId">Support the creators</button>
         </div>
-        <div class="row" id="row-menuid2">
-            <div class="block-menu tool-item" id="pickaxeid">
-            </div>
-            <div class="block-menu block-item tGrs" id="tGrs-menuid">
-                <div id="tGrsinventoryid">0</div>
-            </div>
+        <div id="tutorialPageId" class="doNotDisplay">The aim of minecraft is
+            to build your own world. Use the shovel 
+            to dig in the earth. The pickaxe for breaking rocks,
+            and the axe for cutting down trees. Ater that, use 
+            the blocks you`ve collected to create your
+            own unique world.
         </div>
-        <div class="row" id="row-menuid3">
-            <div class="block-menu block-item stone" id="stone-menuid">
-                <div id="stoneinventoryid">0</div>
-            </div>
-            <div class="block-menu block-item leaves" id="leaves-menuid">
-                <div id="leavesinventoryid">0</div>
-            </div>
-        </div>
-        <div class="row" id="row-menuid4">
-            <div class="block-menu block-item wood" id="wood-menuid">
-                <div id="woodinventoryid">0</div>
-            </div>
-            <div class="block-menu block-item earth" id="earth-menuid">
-                <div id="earthinventoryid">0</div>
-            </div>
-        </div>
+        <div id="supportPageId" class="doNotDisplay"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script src="./script/script.js"></script>
