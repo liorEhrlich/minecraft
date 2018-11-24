@@ -110,21 +110,22 @@ var denyToolInStyle = function (selectedTool) {
     }, 500);
 }
 
+var removeAndAddBlockImageClass = function (eventTarget,removedClass, addedClass) {
+    updateBlockInventory(removedClass);
+    $(event.target).fadeOut("fast");
+    $(event.target).removeClass(removedClass);
+    $(event.target).fadeIn("fast");
+    $(event.target).addClass(addedClass);
+}
+
 var changeBlockImage = function (event) {
     if (mainGame.selectedTool === "shovelid") {
         if ($(event.target).attr('class') === "block tGrs") {
-            updateBlockInventory("tGrs");
-            $(event.target).fadeOut("fast");
-            $(event.target).removeClass("tGrs");
-            $(event.target).fadeIn("fast");
-            $(event.target).addClass("sky");
+            removeAndAddBlockImageClass(event,"tGrs","sky");
+
         }
         else if ($(event.target).attr('class') === "block earth") {
-            updateBlockInventory("earth");
-            $(event.target).fadeOut("fast");
-            $(event.target).removeClass("earth");
-            $(event.target).fadeIn("fast");
-            $(event.target).addClass("sky");
+            removeAndAddBlockImageClass(event,"earth","sky");
         }
         else {
             denyToolInStyle(mainGame.selectedTool);
@@ -132,11 +133,7 @@ var changeBlockImage = function (event) {
     }
     else if (mainGame.selectedTool === "pickaxeid") {
         if ($(event.target).attr('class') === "block stone") {
-            updateBlockInventory("stone");
-            $(event.target).fadeOut("fast");
-            $(event.target).removeClass("stone");
-            $(event.target).fadeIn("fast");
-            $(event.target).addClass("sky");
+            removeAndAddBlockImageClass(event,"stone","sky");
         }
         else {
             denyToolInStyle(mainGame.selectedTool);
@@ -144,18 +141,10 @@ var changeBlockImage = function (event) {
     }
     else if (mainGame.selectedTool === "axeid") {
         if ($(event.target).attr('class') === "block leaves") {
-            updateBlockInventory("leaves");
-            $(event.target).fadeOut("fast");
-            $(event.target).removeClass("leaves");
-            $(event.target).fadeIn("fast");
-            $(event.target).addClass("sky");
+            removeAndAddBlockImageClass(event,"leaves","sky");
         }
         else if ($(event.target).attr('class') === "block wood") {
-            updateBlockInventory("wood");
-            $(event.target).fadeOut("fast");
-            $(event.target).removeClass("wood");
-            $(event.target).fadeIn("fast");
-            $(event.target).addClass("sky");
+            removeAndAddBlockImageClass(event,"wood","sky");
         }
         else {
             denyToolInStyle(mainGame.selectedTool);
@@ -172,40 +161,29 @@ var startGame = function () {
     $(".contain").on("click", changeBlockImage);
 }
 
+var showTutorialOrSupport = function (show, dontShow) {
+    if (!$(`#${dontShow}`).hasClass("doNotDisplay")) {
+        $(`#${dontShow}`).fadeOut();
+        $(`#${dontShow}`).toggleClass("doNotDisplay")
+    }
+    if ($(`#${show}`).hasClass("doNotDisplay")) {
+        $(`#${show}`).fadeIn('medium');
+    }
+    else if (!$(`#${show}`).hasClass("doNotDisplay")) {
+        $(`#${show}`).fadeOut('medium');
+    }
+    $(`#${show}`).toggleClass("doNotDisplay")
 
-var showTutorial = function () {
-    if (!$("#supportPageId").hasClass("doNotDisplay")) {
-        $("#supportPageId").fadeOut();
-        $('#supportPageId').toggleClass("doNotDisplay")
-    }
-    if ($("#tutorialPageId").hasClass("doNotDisplay")) {
-        $('#tutorialPageId').fadeIn('medium');
-    }
-    else if (!$("#tutorialPageId").hasClass("doNotDisplay")) {
-        $('#tutorialPageId').fadeOut('medium');
-    }
-    $('#tutorialPageId').toggleClass("doNotDisplay")
-
-}
-
-var showSupport = function () {
-    if (!$("#tutorialPageId").hasClass("doNotDisplay")) {
-        $("#tutorialPageId").fadeOut();
-        $('#tutorialPageId').toggleClass("doNotDisplay")
-    }
-    if ($("#supportPageId").hasClass("doNotDisplay")) {
-        $('#supportPageId').fadeIn('medium');
-    }
-    else if (!$("#supportPageId").hasClass("doNotDisplay")) {
-        $('#supportPageId').fadeOut('medium');
-    }
-    $('#supportPageId').toggleClass("doNotDisplay")
 }
 
 $(document).ready(function () {
     $(`#gameContainer`).addClass("doNotDisplay");
     $(`#landingPageId`).removeClass("doNotDisplay");
     $("#startGameId").on("click", startGame);
-    $("#tutorialId").on("click", showTutorial);
-    $("#supportId").on("click", showSupport);
+    $("#tutorialId").on("click", function () {
+        showTutorialOrSupport('tutorialPageId', 'supportPageId');
+    });
+    $("#supportId").on("click", function () {
+        showTutorialOrSupport('supportPageId', 'tutorialPageId')
+    });
 });
